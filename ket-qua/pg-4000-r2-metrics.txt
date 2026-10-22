@@ -1,0 +1,15 @@
+== 1. Ti le mat log trong 60 giay do ==
+ can_nhan | da_luu | ti_le_mat_pct 
+----------+--------+---------------
+   240000 | 208382 |        13.174
+
+== 2. Throughput: so log luu duoc moi giay trong 60 giay do ==
+ throughput_log_per_s 
+----------------------
+               3473.3
+
+== 3. Do tre end-to-end (ms) cua cac log trong 60 giay do ==
+ so_log | p50_ms | p95_ms | p99_ms | max_ms 
+--------+--------+--------+--------+--------
+ 208382 |  104.1 |  213.8 |  299.3 |  697.7
+

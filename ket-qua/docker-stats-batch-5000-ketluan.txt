@@ -1,0 +1,5 @@
+Tai dat: 5000 log/s (/logs-batch), so mau trong 60 giay do: 18
+CPU postgres trung binh: 19.0% (gioi han 100%)
+CPU app trung binh:      151.4% (gioi han 150%)
+Ket noi DB dang ban trung binh: 0.4 / 10
+KET LUAN: App dung gan het 1,5 CPU duoc cap -> nghen do app Spring Boot thieu CPU.

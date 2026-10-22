@@ -1,0 +1,5 @@
+Tai dat: 4000 log/s, so mau trong 60 giay do: 17
+CPU postgres trung binh: 99.1% (gioi han 100%)
+CPU app trung binh:      139.8% (gioi han 150%)
+Ket noi DB dang ban trung binh: 8.9 / 10
+KET LUAN: PostgreSQL dung gan het 1 CPU duoc cap -> nghen do PostgreSQL thieu CPU.

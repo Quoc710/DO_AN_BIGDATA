@@ -1,0 +1,31 @@
+Da doc 500.000 dong tu loadgen/apache_500k.jsonl.gz
+Lech dong ho so voi PostgreSQL: 2 ms (sai so do 1 ms) -> cong vao sent_ts: 0 ms
+Bat dau run_id=stats-4000: 4.000 log/s trong 90 giay = 360.000 log
+    5s  da gui 9.994  ok 9.389  loi 205  bo qua 9.653  worker dang ban 400/400
+   10s  da gui 26.046  ok 25.441  loi 205  bo qua 13.610  worker dang ban 400/400
+   15s  da gui 40.793  ok 40.188  loi 205  bo qua 18.821  worker dang ban 400/400
+   20s  da gui 56.815  ok 56.210  loi 205  bo qua 22.811  worker dang ban 400/400
+   25s  da gui 71.106  ok 70.501  loi 205  bo qua 28.528  worker dang ban 400/400
+   30s  da gui 85.128  ok 84.523  loi 205  bo qua 34.506  worker dang ban 400/400
+   35s  da gui 100.964  ok 100.359  loi 205  bo qua 38.691  worker dang ban 400/400
+   40s  da gui 116.696  ok 116.091  loi 205  bo qua 42.927  worker dang ban 400/400
+   45s  da gui 129.258  ok 128.653  loi 205  bo qua 50.406  worker dang ban 400/400
+   50s  da gui 146.460  ok 145.855  loi 205  bo qua 53.210  worker dang ban 400/400
+   55s  da gui 161.487  ok 160.882  loi 205  bo qua 58.172  worker dang ban 400/400
+   60s  da gui 178.150  ok 177.545  loi 205  bo qua 61.498  worker dang ban 400/400
+   65s  da gui 194.263  ok 193.658  loi 205  bo qua 65.422  worker dang ban 400/400
+   70s  da gui 210.317  ok 209.712  loi 205  bo qua 69.375  worker dang ban 400/400
+   75s  da gui 224.311  ok 223.706  loi 205  bo qua 75.334  worker dang ban 400/400
+   80s  da gui 240.789  ok 240.184  loi 205  bo qua 78.889  worker dang ban 400/400
+   85s  da gui 256.546  ok 255.941  loi 205  bo qua 83.142  worker dang ban 400/400
+   90s  da gui 271.316  ok 270.711  loi 205  bo qua 88.349  worker dang ban 400/400
+
+===== TONG KET stats-4000 =====
+Tai dat (offered load) : 4.000 log/s, thuc te ban 3.999 log/s
+Tong so log can gui    : 360.000
+Gui di / OK / loi      : 271.651 / 271.446 / 205
+Bo qua (qua tai phia gui): 88.349   Trung khoa (409): 0
+Cac loai loi           : ConnectException=205
+Da ghi them 1 dong vao results.csv
+Lenh tinh so do:
+  docker exec -it la-postgres psql -U loguser -d logdb -v run=stats-4000 -v rate=4000 -f /metrics.sql

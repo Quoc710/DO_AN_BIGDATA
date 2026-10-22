@@ -1,0 +1,29 @@
+Da doc 500.000 dong tu loadgen/apache_500k.jsonl.gz
+Lech dong ho so voi PostgreSQL: 1 ms (sai so do 2 ms) -> cong vao sent_ts: 0 ms
+Bat dau run_id=stats-batch-5000: 5.000 log/s trong 90 giay = 450.000 log
+    5s  da gui 18.003  ok 17.480  loi 123  bo qua 6.824  worker dang ban 400/400
+   10s  da gui 41.032  ok 40.533  loi 123  bo qua 8.955  worker dang ban 376/400
+   15s  da gui 63.995  ok 63.668  loi 123  bo qua 10.950  worker dang ban 204/400
+   20s  da gui 87.664  ok 87.141  loi 123  bo qua 12.271  worker dang ban 400/400
+   25s  da gui 111.731  ok 111.236  loi 123  bo qua 13.242  worker dang ban 374/400
+   30s  da gui 132.747  ok 132.282  loi 123  bo qua 17.211  worker dang ban 342/400
+   35s  da gui 155.361  ok 154.838  loi 123  bo qua 19.482  worker dang ban 400/400
+   40s  da gui 177.745  ok 177.222  loi 123  bo qua 22.189  worker dang ban 400/400
+   45s  da gui 200.143  ok 199.868  loi 123  bo qua 24.840  worker dang ban 153/400
+   50s  da gui 223.243  ok 222.727  loi 123  bo qua 26.744  worker dang ban 393/400
+   55s  da gui 246.678  ok 246.155  loi 123  bo qua 28.267  worker dang ban 400/400
+   60s  da gui 269.893  ok 269.370  loi 123  bo qua 29.964  worker dang ban 400/400
+   65s  da gui 292.719  ok 292.196  loi 123  bo qua 32.226  worker dang ban 400/400
+   70s  da gui 317.218  ok 316.695  loi 123  bo qua 32.688  worker dang ban 400/400
+   75s  da gui 339.897  ok 339.614  loi 123  bo qua 35.104  worker dang ban 160/400
+   80s  da gui 362.824  ok 362.301  loi 123  bo qua 37.069  worker dang ban 400/400
+   85s  da gui 385.579  ok 385.286  loi 123  bo qua 39.410  worker dang ban 170/400
+   90s  da gui 407.142  ok 406.619  loi 123  bo qua 42.635  worker dang ban 400/400
+
+===== TONG KET stats-batch-5000 =====
+Tai dat (offered load) : 5.000 log/s, thuc te ban 4.999 log/s
+Tong so log can gui    : 450.000
+Gui di / OK / loi      : 407.365 / 407.242 / 123
+Bo qua (qua tai phia gui): 42.635   Trung khoa (409): 0
+Cac loai loi           : ConnectException=123
+Da ghi them 1 dong vao results.csv
