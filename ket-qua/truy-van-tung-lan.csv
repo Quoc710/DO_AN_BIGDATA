@@ -1,0 +1,101 @@
+nhan,cau,lan,ms,ket_qua
+khong-index,Q1 tim chu forbidden,1,3901.840000,80000
+khong-index,Q1 tim chu forbidden,2,4144.595000,80000
+khong-index,Q1 tim chu forbidden,3,3818.213000,80000
+khong-index,Q1 tim chu forbidden,4,4209.216000,80000
+khong-index,Q1 tim chu forbidden,5,3779.740000,80000
+khong-index,Q1 tim chu forbidden,6,3797.717000,80000
+khong-index,Q1 tim chu forbidden,7,4005.058000,80000
+khong-index,Q1 tim chu forbidden,8,3734.155000,80000
+khong-index,Q1 tim chu forbidden,9,3962.302000,80000
+khong-index,Q1 tim chu forbidden,10,3831.691000,80000
+khong-index,Q2 tim cum error state,1,4003.267000,1347500
+khong-index,Q2 tim cum error state,2,3884.249000,1347500
+khong-index,Q2 tim cum error state,3,4010.343000,1347500
+khong-index,Q2 tim cum error state,4,3981.598000,1347500
+khong-index,Q2 tim cum error state,5,3840.988000,1347500
+khong-index,Q2 tim cum error state,6,4081.875000,1347500
+khong-index,Q2 tim cum error state,7,4095.188000,1347500
+khong-index,Q2 tim cum error state,8,3796.596000,1347500
+khong-index,Q2 tim cum error state,9,3977.007000,1347500
+khong-index,Q2 tim cum error state,10,3937.226000,1347500
+khong-index,Q3 dem theo level,1,1435.055000,2
+khong-index,Q3 dem theo level,2,1468.057000,2
+khong-index,Q3 dem theo level,3,1431.572000,2
+khong-index,Q3 dem theo level,4,1500.646000,2
+khong-index,Q3 dem theo level,5,1381.229000,2
+khong-index,Q3 dem theo level,6,1509.042000,2
+khong-index,Q3 dem theo level,7,1689.560000,2
+khong-index,Q3 dem theo level,8,3721.648000,2
+khong-index,Q3 dem theo level,9,3192.247000,2
+khong-index,Q3 dem theo level,10,1895.405000,2
+khong-index,Q4 dem theo service 1 ngay,1,1228.393000,6
+khong-index,Q4 dem theo service 1 ngay,2,1013.603000,6
+khong-index,Q4 dem theo service 1 ngay,3,1068.731000,6
+khong-index,Q4 dem theo service 1 ngay,4,1145.717000,6
+khong-index,Q4 dem theo service 1 ngay,5,1051.469000,6
+khong-index,Q4 dem theo service 1 ngay,6,1229.938000,6
+khong-index,Q4 dem theo service 1 ngay,7,1121.964000,6
+khong-index,Q4 dem theo service 1 ngay,8,1140.079000,6
+khong-index,Q4 dem theo service 1 ngay,9,1125.802000,6
+khong-index,Q4 dem theo service 1 ngay,10,1205.986000,6
+khong-index,Q5 100 log error moi nhat,1,1324.354000,100
+khong-index,Q5 100 log error moi nhat,2,1181.445000,100
+khong-index,Q5 100 log error moi nhat,3,1083.150000,100
+khong-index,Q5 100 log error moi nhat,4,1222.309000,100
+khong-index,Q5 100 log error moi nhat,5,1209.580000,100
+khong-index,Q5 100 log error moi nhat,6,1172.218000,100
+khong-index,Q5 100 log error moi nhat,7,1114.934000,100
+khong-index,Q5 100 log error moi nhat,8,1223.336000,100
+khong-index,Q5 100 log error moi nhat,9,1182.677000,100
+khong-index,Q5 100 log error moi nhat,10,1283.909000,100
+co-index,Q1 tim chu forbidden,1,199.227000,80000
+co-index,Q1 tim chu forbidden,2,225.427000,80000
+co-index,Q1 tim chu forbidden,3,232.246000,80000
+co-index,Q1 tim chu forbidden,4,199.496000,80000
+co-index,Q1 tim chu forbidden,5,196.075000,80000
+co-index,Q1 tim chu forbidden,6,194.646000,80000
+co-index,Q1 tim chu forbidden,7,195.323000,80000
+co-index,Q1 tim chu forbidden,8,195.985000,80000
+co-index,Q1 tim chu forbidden,9,197.621000,80000
+co-index,Q1 tim chu forbidden,10,196.559000,80000
+co-index,Q2 tim cum error state,1,4287.418000,1347500
+co-index,Q2 tim cum error state,2,4201.237000,1347500
+co-index,Q2 tim cum error state,3,4297.729000,1347500
+co-index,Q2 tim cum error state,4,4213.543000,1347500
+co-index,Q2 tim cum error state,5,4097.407000,1347500
+co-index,Q2 tim cum error state,6,4272.299000,1347500
+co-index,Q2 tim cum error state,7,4424.106000,1347500
+co-index,Q2 tim cum error state,8,4480.685000,1347500
+co-index,Q2 tim cum error state,9,4308.591000,1347500
+co-index,Q2 tim cum error state,10,4203.579000,1347500
+co-index,Q3 dem theo level,1,1700.379000,2
+co-index,Q3 dem theo level,2,1687.917000,2
+co-index,Q3 dem theo level,3,1738.481000,2
+co-index,Q3 dem theo level,4,1710.054000,2
+co-index,Q3 dem theo level,5,1759.991000,2
+co-index,Q3 dem theo level,6,1694.655000,2
+co-index,Q3 dem theo level,7,1718.008000,2
+co-index,Q3 dem theo level,8,1812.494000,2
+co-index,Q3 dem theo level,9,1699.648000,2
+co-index,Q3 dem theo level,10,1702.810000,2
+co-index,Q4 dem theo service 1 ngay,1,89.686000,6
+co-index,Q4 dem theo service 1 ngay,2,95.720000,6
+co-index,Q4 dem theo service 1 ngay,3,94.895000,6
+co-index,Q4 dem theo service 1 ngay,4,94.929000,6
+co-index,Q4 dem theo service 1 ngay,5,94.930000,6
+co-index,Q4 dem theo service 1 ngay,6,32.244000,6
+co-index,Q4 dem theo service 1 ngay,7,90.311000,6
+co-index,Q4 dem theo service 1 ngay,8,94.858000,6
+co-index,Q4 dem theo service 1 ngay,9,94.803000,6
+co-index,Q4 dem theo service 1 ngay,10,93.920000,6
+co-index,Q5 100 log error moi nhat,1,0.115000,100
+co-index,Q5 100 log error moi nhat,2,0.107000,100
+co-index,Q5 100 log error moi nhat,3,0.104000,100
+co-index,Q5 100 log error moi nhat,4,0.105000,100
+co-index,Q5 100 log error moi nhat,5,0.102000,100
+co-index,Q5 100 log error moi nhat,6,0.101000,100
+co-index,Q5 100 log error moi nhat,7,0.102000,100
+co-index,Q5 100 log error moi nhat,8,0.127000,100
+co-index,Q5 100 log error moi nhat,9,0.106000,100
+co-index,Q5 100 log error moi nhat,10,0.106000,100

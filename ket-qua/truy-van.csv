@@ -1,0 +1,11 @@
+nhan,cau,so_lan,trung_vi_ms,min_ms,max_ms,ket_qua
+khong-index,Q1 tim chu forbidden,10,3866.77,3734.16,4209.22,80000
+khong-index,Q2 tim cum error state,10,3979.30,3796.60,4095.19,1347500
+khong-index,Q3 dem theo level,10,1504.84,1381.23,3721.65,2
+khong-index,Q4 dem theo service 1 ngay,10,1132.94,1013.60,1229.94,6
+khong-index,Q5 100 log error moi nhat,10,1196.13,1083.15,1324.35,100
+co-index,Q1 tim chu forbidden,10,197.09,194.65,232.25,80000
+co-index,Q2 tim cum error state,10,4279.86,4097.41,4480.69,1347500
+co-index,Q3 dem theo level,10,1706.43,1687.92,1812.49,2
+co-index,Q4 dem theo service 1 ngay,10,94.83,32.24,95.72,6
+co-index,Q5 100 log error moi nhat,10,0.11,0.10,0.13,100
