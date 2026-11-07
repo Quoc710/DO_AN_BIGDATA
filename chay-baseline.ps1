@@ -44,7 +44,7 @@ if ($LASTEXITCODE -ne 0) { Fail "Build hoac bat app khong duoc. Xem dong loi o t
 $appOk = $false
 for ($i = 0; $i -lt 60; $i++) {
     try {
-        $r = Invoke-WebRequest -UseBasicParsing -TimeoutSec 3 http://localhost:8080/clock
+        $r = Invoke-WebRequest -UseBasicParsing -TimeoutSec 3 http://localhost:8085/clock
         if ($r.StatusCode -eq 200) { $appOk = $true; Write-Host "App tra loi: $($r.Content)"; break }
     } catch { }
     Start-Sleep -Seconds 3

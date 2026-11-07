@@ -19,7 +19,7 @@ Step "2/3 Doi app san sang"
 $ok = $false
 for ($i = 0; $i -lt 60; $i++) {
     try {
-        $r = Invoke-WebRequest -UseBasicParsing -TimeoutSec 3 http://localhost:8080/batch-stats
+        $r = Invoke-WebRequest -UseBasicParsing -TimeoutSec 3 http://localhost:8085/batch-stats
         if ($r.StatusCode -eq 200) { $ok = $true; Write-Host "App tra loi: $($r.Content)"; break }
     } catch { }
     Start-Sleep -Seconds 3

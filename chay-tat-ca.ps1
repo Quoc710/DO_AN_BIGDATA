@@ -31,7 +31,7 @@ if ($Tag -ne "") { $Suffix += "-$Tag" }
 
 function BatchStats() {
     try {
-        $j = Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 http://localhost:8080/batch-stats | ConvertFrom-Json
+        $j = Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 http://localhost:8085/batch-stats | ConvertFrom-Json
         return @([long]$j.batches, [long]$j.rows)
     } catch { return $null }
 }
@@ -41,7 +41,7 @@ function Fail($msg) { Write-Host ""; Write-Host "LOI: $msg" -ForegroundColor Red
 
 Step "Kiem tra app va DB dang chay"
 try {
-    $r = Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 http://localhost:8080/clock
+    $r = Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 http://localhost:8085/clock
 } catch { Fail "App chua chay. Chay chay-baseline.ps1 truoc." }
 docker cp metrics.sql la-postgres:/metrics.sql | Out-Null
 docker cp metrics-csv.sql la-postgres:/metrics-csv.sql | Out-Null

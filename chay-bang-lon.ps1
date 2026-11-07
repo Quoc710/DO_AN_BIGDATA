@@ -19,7 +19,7 @@ Set-Location $PSScriptRoot
 function Step($msg) { Write-Host ""; Write-Host "==> $msg" -ForegroundColor Cyan }
 function Fail($msg) { Write-Host ""; Write-Host "LOI: $msg" -ForegroundColor Red; exit 1 }
 
-try { Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 http://localhost:8080/clock | Out-Null }
+try { Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 http://localhost:8085/clock | Out-Null }
 catch { Fail "App chua chay. Chay chay-baseline.ps1 truoc." }
 
 if ($Mode -eq "batch") { $Path = "/logs-batch"; $run = "pgb-long-$Rate" } else { $Path = "/logs"; $run = "pg-long-$Rate" }

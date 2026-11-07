@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
@@ -32,13 +33,13 @@ import java.util.zip.GZIPInputStream;
  *   java LoadGen.java --file apache_500k.jsonl.gz --rate 1000 --run-id pg-1000
  *
  * Tham so:
- *   --url          dia chi app (mac dinh http://localhost:8080)
+ *   --url          dia chi app (mac dinh http://localhost:8085)
  *   --file         file dataset JSONL, doc duoc ca file nen .jsonl.gz (bat buoc)
  *   --rate         so log moi giay (bat buoc)
  *   --run-id       nhan lan chay, vd pg-1000 (bat buoc, moi lan chay mot nhan moi)
  *   --duration     so giay ban tai (mac dinh 90 = 30 giay khoi dong + 60 giay do)
  *   --workers      so luong gui song song toi da (mac dinh 400)
- *   --path         /logs (mac dinh, ghi vao DB) hoac /noop (chi kiem tra may ban tai, khong ghi DB)
+ *   --path         /logs (PostgreSQL), /logs-kafka (Kafka pipeline), /noop (khong ghi DB)
  *   --timeout-ms   qua thoi gian nay coi la loi (mac dinh 10000)
  *   --sync-clock   true = cong do lech dong ho do qua /clock vao sent_ts (mac dinh false, chi in ra)
  *
@@ -55,7 +56,7 @@ public class LoadGen {
 
     public static void main(String[] args) throws Exception {
         Map<String, String> a = parseArgs(args);
-        String url = a.getOrDefault("url", "http://localhost:8080");
+        String url = a.getOrDefault("url", "http://localhost:8085");
         String file = require(a, "file");
         int rate = Integer.parseInt(require(a, "rate"));
         String runId = require(a, "run-id");
@@ -88,6 +89,9 @@ public class LoadGen {
         URI logsUri = URI.create(url + path);
         AtomicLong ok = new AtomicLong(), failed = new AtomicLong(), conflict = new AtomicLong(), sent = new AtomicLong();
         AtomicInteger busy = new AtomicInteger();
+        ConcurrentLinkedQueue<Long> acceptedIds = new ConcurrentLinkedQueue<>();
+        ConcurrentLinkedQueue<Long> failedIds = new ConcurrentLinkedQueue<>();
+        ConcurrentLinkedQueue<Long> skippedIds = new ConcurrentLinkedQueue<>();
         Map<String, LongAdder> errors = new ConcurrentHashMap<>();   // loai loi -> so lan
         // Hang cho nho giua bo dieu phoi va cac worker. Day hang = tat ca worker dang ban -> bo qua log do.
         BlockingQueue<Long> queue = new ArrayBlockingQueue<>(workers);
@@ -112,8 +116,8 @@ public class LoadGen {
                         sent.incrementAndGet();
                         try {
                             int code = client.send(req, HttpResponse.BodyHandlers.discarding()).statusCode();
-                            if (code / 100 == 2) ok.incrementAndGet();
-                            else if (code == 409) conflict.incrementAndGet();
+                            if (code / 100 == 2) { ok.incrementAndGet(); acceptedIds.add(logId); }
+                            else if (code == 409) { conflict.incrementAndGet(); failedIds.add(logId); }
                             else {
                                 failed.incrementAndGet();
                                 errors.computeIfAbsent("HTTP " + code, k -> new LongAdder()).increment();
@@ -132,6 +136,7 @@ public class LoadGen {
         }
 
         long skipped = 0;
+        long startEpochMs = System.currentTimeMillis();
         long start = System.nanoTime();
         long nextReport = start + TimeUnit.SECONDS.toNanos(5);
         long attempted = 0;
@@ -140,7 +145,7 @@ public class LoadGen {
             long due = Math.min(total, (now - start) * rate / 1_000_000_000L + 1);
             while (attempted < due) {
                 attempted++;
-                if (!queue.offer(attempted)) skipped++;   // he thong qua cham, worker nao cung dang cho -> tinh la mat
+                if (!queue.offer(attempted)) { skipped++; skippedIds.add(attempted); }   // log bi bo qua do cac worker deu ban
             }
             if (now >= nextReport) {
                 System.out.printf("  %3ds  da gui %,d  ok %,d  loi %,d  bo qua %,d  worker dang ban %,d/%,d%n",
@@ -150,11 +155,26 @@ public class LoadGen {
             }
             if (attempted < total) LockSupport.parkNanos(200_000);
         }
+        long sendEndEpochMs = System.currentTimeMillis();
         double sendSecs = (System.nanoTime() - start) / 1e9;
 
         // cho cac request con do tra loi xong
         for (int w = 0; w < workers; w++) queue.put(STOP);
         for (Thread t : pool) t.join(timeoutMs + 5000L);
+
+        Path acceptedFile = Path.of("accepted-" + runId + ".txt");
+        try (PrintWriter ids = new PrintWriter(new FileWriter(acceptedFile.toFile(), StandardCharsets.UTF_8))) {
+            for (Long id : acceptedIds) ids.println(id);
+        }
+
+        Path failedFile = Path.of("failed-" + runId + ".txt");
+        try (PrintWriter ids = new PrintWriter(new FileWriter(failedFile.toFile(), StandardCharsets.UTF_8))) { for (Long id : failedIds) ids.println(id); }
+        Path skippedFile = Path.of("skipped-" + runId + ".txt");
+        try (PrintWriter ids = new PrintWriter(new FileWriter(skippedFile.toFile(), StandardCharsets.UTF_8))) { for (Long id : skippedIds) ids.println(id); }
+        Path metaFile = Path.of("run-" + runId + ".properties");
+        try (PrintWriter meta = new PrintWriter(new FileWriter(metaFile.toFile(), StandardCharsets.UTF_8))) {
+            meta.printf("run_id=%s%nrate=%d%nduration_s=%d%nattempted=%d%nsent=%d%nhttp_2xx=%d%nhttp_failed=%d%nconflict=%d%nskipped=%d%nstart_epoch_ms=%d%nsend_end_epoch_ms=%d%nfinish_epoch_ms=%d%n", runId, rate, duration, attempted, sent.get(), ok.get(), failed.get(), conflict.get(), skipped, startEpochMs, sendEndEpochMs, System.currentTimeMillis());
+        }
 
         double actualRate = attempted / sendSecs;
         System.out.println();
@@ -183,6 +203,8 @@ public class LoadGen {
                     failed.get(), skipped, conflict.get(), actualRate, offset);
         }
         System.out.println("Da ghi them 1 dong vao results.csv");
+        System.out.println("Danh sach log nhan 2xx: " + acceptedFile.toAbsolutePath());
+        System.out.println("Metadata de tinh metrics: " + metaFile.toAbsolutePath());
         if (path.equals("/logs")) {
             System.out.println("Lenh tinh so do:");
             System.out.printf("  docker exec -it la-postgres psql -U loguser -d logdb -v run=%s -v rate=%d -f /metrics.sql%n", runId, rate);

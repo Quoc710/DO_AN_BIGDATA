@@ -1,1 +1,11 @@
 bao-cao/Bao-cao-baseline-de-hieu-v5.docx
+
+# Build output
+/app/target/
+
+# Per-run load generator output (keep selected final evidence under ket-qua/ instead)
+/loadgen/accepted-*.txt
+/loadgen/failed-*.txt
+/loadgen/skipped-*.txt
+/loadgen/run-*.properties
+/loadgen/results.csv
